@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/dark_six</item>
+        <item name="colorSecondary">@color/blue_grey</item>
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="buttonWelcome">@style/Widget.AppTheme.Button.Welcome</item>
+    </style>
+
+    <style name="Widget.AppTheme.Button.Welcome" parent="Widget.MaterialComponents.TextView">
+       <item name="android:background">@drawable/btn_welcome</item>
+       <item name="android:textAppearance">?attr/textAppearanceButton</item>
+       <item name="android:focusable">true</item>
+       <item name="android:clickable">true</item>
+       <item name="android:gravity">center</item>
+       <item name="android:paddingStart">64dp</item>
+       <item name="android:paddingEnd">64dp</item>
+    </style>
+
+    <attr name="buttonWelcome" format="reference"/>
+
+</resources>
+
+
+
+
