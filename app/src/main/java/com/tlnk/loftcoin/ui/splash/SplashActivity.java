@@ -1,31 +1,30 @@
-package com.tlnk.loftcoin.activity;
+package com.tlnk.loftcoin.ui.splash;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-
-import androidx.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.tlnk.loftcoin.R;
+import com.tlnk.loftcoin.ui.main.MainActivity;
+import com.tlnk.loftcoin.ui.welcome.WelcomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private SharedPreferences prefs;
-
-    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler();
 
     private Runnable goNext;
+
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean(WelcomeActivity.KEY_SHOW_WELCOME, true)) {
             goNext = () -> startActivity(new Intent(this, WelcomeActivity.class));
