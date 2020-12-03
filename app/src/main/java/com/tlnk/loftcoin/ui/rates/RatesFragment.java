@@ -10,8 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.tlnk.loftcoin.R;
+import com.tlnk.loftcoin.databinding.FragmentRatesBinding;
 
-public class RatesFragment extends Fragment {
+public class RatesFragment extends Fragment implements RatesView{
+
+    private FragmentRatesBinding binding;
 
     @Nullable
     @Override
@@ -19,4 +22,9 @@ public class RatesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_rates, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding = FragmentRatesBinding.bind(view);
+    }
 }

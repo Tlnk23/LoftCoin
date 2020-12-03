@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "API_KEY", "9572f768-fe5b-47db-856b-31e85c5b3a25"
+        buildConfigField "String", "API_KEY", '"9572f768-fe5b-47db-856b-31e85c5b3a25"'
         buildConfigField "String", "API_ENDPOINT", '"https://pro-api.coinmarketcap.com/v1/"'
         buildConfigField "String", "IMG_ENDPOINT", '"https://s2.coinmarketcap.com/static/img/coins/128x128/"'
 

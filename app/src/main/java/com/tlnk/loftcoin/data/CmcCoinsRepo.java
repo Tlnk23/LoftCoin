@@ -26,7 +26,6 @@ public class CmcCoinsRepo implements CoinsRepo {
     }
 
     @NonNull
-    @Override
     public List<? extends Coin> listings(@NonNull String currency) throws IOException {
         final Response<Listings> response = api.listings(currency).execute();
         if (response.isSuccessful()) {
@@ -47,7 +46,7 @@ public class CmcCoinsRepo implements CoinsRepo {
         builder.addInterceptor(chain -> {
             final Request request = chain.request();
             return chain.proceed(request.newBuilder()
-                .addHeader(CmcApi.API_KEY, "9572f768-fe5b-47db-856b-31e85c5b3a25")
+                .addHeader(CmcApi.API_KEY, BuildConfig.API_KEY)
                 .build());
         });
         if (BuildConfig.DEBUG) {
@@ -61,12 +60,12 @@ public class CmcCoinsRepo implements CoinsRepo {
 
     private Retrofit createRetrofit(OkHttpClient httpClient) {
         final Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl("https://pro-api.coinmarketcap.com/v1/");
+        builder.baseUrl(BuildConfig.API_ENDPOINT);
         final Moshi moshi = new Moshi.Builder().build();
         builder.addConverterFactory(MoshiConverterFactory.create(
             moshi.newBuilder()
                 .add(Coin.class, moshi.adapter(AutoValue_Coin.class))
-                .add(Listings.class, moshi.adapter(AutoValue_Listnings.class))
+                .add(Listings.class, moshi.adapter(AutoValue_Listings.class))
                 .build()
         ));
         return builder.build();
