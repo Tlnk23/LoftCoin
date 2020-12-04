@@ -26,6 +26,7 @@ public class CmcCoinsRepo implements CoinsRepo {
     }
 
     @NonNull
+    @Override
     public List<? extends Coin> listings(@NonNull String currency) throws IOException {
         final Response<Listings> response = api.listings(currency).execute();
         if (response.isSuccessful()) {
@@ -41,13 +42,14 @@ public class CmcCoinsRepo implements CoinsRepo {
         }
         return Collections.emptyList();
     }
+
     private OkHttpClient createHttpClient() {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(chain -> {
             final Request request = chain.request();
             return chain.proceed(request.newBuilder()
-                .addHeader(CmcApi.API_KEY, BuildConfig.API_KEY)
-                .build());
+                    .addHeader(CmcApi.API_KEY, BuildConfig.API_KEY)
+                    .build());
         });
         if (BuildConfig.DEBUG) {
             final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -60,20 +62,16 @@ public class CmcCoinsRepo implements CoinsRepo {
 
     private Retrofit createRetrofit(OkHttpClient httpClient) {
         final Retrofit.Builder builder = new Retrofit.Builder();
+        builder.client(httpClient);
         builder.baseUrl(BuildConfig.API_ENDPOINT);
         final Moshi moshi = new Moshi.Builder().build();
         builder.addConverterFactory(MoshiConverterFactory.create(
-            moshi.newBuilder()
-                .add(Coin.class, moshi.adapter(AutoValue_Coin.class))
-                .add(Listings.class, moshi.adapter(AutoValue_Listings.class))
-                .build()
+                moshi.newBuilder()
+                        .add(Coin.class, moshi.adapter(AutoValue_Coin.class))
+                        .add(Listings.class, moshi.adapter(AutoValue_Listings.class))
+                        .build()
         ));
         return builder.build();
     }
 
-    @NonNull
-    @Override
-    public List<? extends Coin> listings() {
-        return null;
-    }
 }

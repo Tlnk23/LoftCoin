@@ -8,6 +8,7 @@ public interface CmcApi {
 
     String API_KEY = "X-CMC_PRO_API_KEY";
 
-    @GET("/cryptocurrency/listings/latest")
+    @GET("cryptocurrency/listings/latest")
     Call<Listings> listings(@Query("convert") String convert);
+
 }
