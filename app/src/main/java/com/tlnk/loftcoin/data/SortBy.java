@@ -1,4 +1,6 @@
 package com.tlnk.loftcoin.data;
 
-public class SortBy {
+public enum SortBy {
+    RANK,
+    PRICE
 }

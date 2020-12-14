@@ -1,4 +1,12 @@
 package com.tlnk.loftcoin.util;
 
-public class UtilModule {
+import dagger.Binds;
+import dagger.Module;
+
+@Module
+public abstract class UtilModule {
+
+    @Binds
+    abstract ImageLoader imageLoader(PicassoImageLoader impl);
+
 }

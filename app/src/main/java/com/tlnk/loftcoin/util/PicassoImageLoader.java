@@ -1,4 +1,4 @@
-package com.tlnk.loftcoin.data;
+package com.tlnk.loftcoin.util;
 
 import android.widget.ImageView;
 
