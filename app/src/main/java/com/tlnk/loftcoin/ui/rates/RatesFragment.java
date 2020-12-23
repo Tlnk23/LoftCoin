@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.tlnk.loftcoin.BaseComponent;
 import com.tlnk.loftcoin.R;
 import com.tlnk.loftcoin.databinding.FragmentRatesBinding;
@@ -66,6 +67,11 @@ public class RatesFragment extends Fragment {
         binding.recycler.setHasFixedSize(true);
         binding.refresher.setOnRefreshListener(viewModel::refresh);
         disposable.add(viewModel.coins().subscribe(adapter::submitList));
+        disposable.add(viewModel.onError().subscribe(e -> {
+            Snackbar.make(view, e.getMessage(), Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Retry", v -> viewModel.retry())
+                    .show();
+        }));
         disposable.add(viewModel.isRefreshing().subscribe(binding.refresher::setRefreshing));
     }
 
