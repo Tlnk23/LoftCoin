@@ -1,4 +1,4 @@
-package com.tlnk.loftcoin.util;
+package com.tlnk.loftcoin.widget;
 
 import android.os.SystemClock;
 import android.view.MotionEvent;
