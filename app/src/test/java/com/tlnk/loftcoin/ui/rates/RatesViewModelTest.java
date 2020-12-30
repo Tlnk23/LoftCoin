@@ -24,7 +24,7 @@ import io.reactivex.observers.TestObserver;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@Config(sdk = {Build.VERSION_CODES.O_MR1})
+@Config(sdk = 28)
 @RunWith(AndroidJUnit4.class)
 public class RatesViewModelTest {
 
