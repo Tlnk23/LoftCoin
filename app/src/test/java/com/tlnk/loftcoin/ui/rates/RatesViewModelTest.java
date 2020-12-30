@@ -1,5 +1,7 @@
 package com.tlnk.loftcoin.ui.rates;
 
+import android.os.Build;
+
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -13,6 +15,7 @@ import com.tlnk.loftcoin.util.TestRxSchedulers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +24,7 @@ import io.reactivex.observers.TestObserver;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@Config(sdk = {Build.VERSION_CODES.O_MR1})
 @RunWith(AndroidJUnit4.class)
 public class RatesViewModelTest {
 
